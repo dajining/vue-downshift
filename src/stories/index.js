@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/vue'
 import { action } from '@storybook/addon-actions'
-import { text, select } from '@storybook/addon-knobs/vue'
+import { text, select, boolean } from '@storybook/addon-knobs/vue'
 
 import Autocomplete from 'vue2-autocomplete-js'
 import InputField from '../components/InputField.vue'
@@ -30,6 +30,8 @@ storiesOf('vue-downshift', module)
     components: { InputField },
     template: `
       <input-field
+        :id="id"
+        :label="label"
         :name="name"
         :placeholder="placeholder"
         :type="type"
@@ -38,6 +40,8 @@ storiesOf('vue-downshift', module)
       />
     `,
     data: () => ({
+      id: text('id', 'id'),
+      label: text('label', 'label'),
       name: text('name', 'name'),
       placeholder: text('placeholder', 'placeholder'),
       type: select('type', ['text', 'number', 'range'], 'text'),

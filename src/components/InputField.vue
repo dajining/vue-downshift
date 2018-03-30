@@ -1,24 +1,38 @@
 <template>
-  <input
-    :name="name"
-    :placeholder="placeholder"
-    :type="type"
-    :value="value"
-    @blur="$emit('blur', $event)"
-    @focus="$emit('focus', $event)"
-    @input="updateValue"
-    class="input-field"
-  >
+  <div>
+    <input-label
+      :htmlFor="id"
+      :label="label"
+    />
+    <input
+      :id="id"
+      :name="name"
+      :placeholder="placeholder"
+      :type="type"
+      :value="value"
+      @blur="$emit('blur', $event)"
+      @focus="$emit('focus', $event)"
+      @input="updateValue"
+      class="input-field"
+    >
+  </div>
 </template>
 
 <script>
+  import InputLabel from './InputLabel.vue'
+
   export default {
+    components: {
+      InputLabel,
+    },
+
     props: {
-      value: {},
+      id: { type: String },
       label: { type: String },
       name: { type: String, require: true },
+      placeholder: { type: String },
       type: { type: String, default: 'text' },
-      placeholder: { type: String }
+      value: {},
     },
 
     methods: {
