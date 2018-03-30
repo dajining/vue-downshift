@@ -4,6 +4,7 @@ import { text, select, boolean } from '@storybook/addon-knobs/vue'
 
 import Autocomplete from 'vue2-autocomplete-js'
 import InputField from '../components/InputField.vue'
+import DropDownField from '../components/DropDownField.vue'
 
 storiesOf('vue-downshift', module)
   .add('Downshift', () => ({
@@ -45,6 +46,31 @@ storiesOf('vue-downshift', module)
       name: text('name', 'name'),
       placeholder: text('placeholder', 'placeholder'),
       type: select('type', ['text', 'number', 'range'], 'text'),
+      value: text('value', 'value'),
+    }),
+    methods: {
+      handleChange: action('changed'),
+    },
+  }))
+
+
+  .add('DropDownField', () => ({
+    components: { DropDownField },
+    template: `
+      <drop-down-field
+        :id="id"
+        :label="label"
+        :name="name"
+        :placeholder="placeholder"
+        :value="value"
+        @change="handleChange"
+      />
+    `,
+    data: () => ({
+      id: text('id', 'id'),
+      label: text('label', 'label'),
+      name: text('name', 'name'),
+      placeholder: text('placeholder', 'placeholder'),
       value: text('value', 'value'),
     }),
     methods: {
